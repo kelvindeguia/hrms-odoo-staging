@@ -1,0 +1,14 @@
+<odoo>
+    <!-- HR Announcements: List View -->
+    <record id="hr_announcements_list" model="ir.ui.view">
+        <field name="name">hr.announcements.list</field>
+        <field name="model">hr.announcements</field>
+        <field name="arch" type="xml">
+            <list string="Announcements">
+                <field name="name"/>
+                <field name="announcement_reason"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+</odoo>

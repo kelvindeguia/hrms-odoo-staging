@@ -1,0 +1,24 @@
+<odoo>
+    <!-- HR Announcement: Search View -->
+    <record id="hr_announcements_view_search" model="ir.ui.view">
+        <field name="name">hr.announcements.view.search</field>
+        <field name="model">hr.announcements</field>
+        <field name="arch" type="xml">
+            <search string="Announcements">
+                <field name="name" string="Name"/>
+                <field name="is_announcement"
+                       string="Is a General Announcement"/>
+                <field name="announcement_reason" string="Announcement Reason"/>
+                <field name="state" string="State"/>
+                <separator/>
+                <filter name="approved_rewards" string="Approved Letters"
+                        domain="[('state', '=', 'approved')]"/>
+                <filter name="general_announcements"
+                        string="General Announcements"
+                        domain="[('is_announcement', '=',True)]"/>
+                <filter string="Status" name="Status" domain="[]"
+                        context="{'group_by':'state'}"/>
+            </search>
+        </field>
+    </record>
+</odoo>

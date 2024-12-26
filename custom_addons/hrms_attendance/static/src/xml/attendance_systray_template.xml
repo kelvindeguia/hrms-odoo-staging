@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <templates xml:space="preserve">
+        <t t-name="AttendanceSystrayTemplate">
+            <div class="o_systray_attendance">
+                <t t-if="state.is_checked_in">
+                    <button class="btn btn-secondary o_attendance_check_out"
+                            t-on-click="_onCheckOut">
+                        Check Out
+                    </button>
+                </t>
+                <t t-if="!state.is_checked_in">
+                    <button class="btn btn-primary o_attendance_check_in"
+                            t-on-click="_onCheckIn">
+                        Check In
+                    </button>
+                </t>
+            </div>
+        </t>
+    </templates>
+</odoo>

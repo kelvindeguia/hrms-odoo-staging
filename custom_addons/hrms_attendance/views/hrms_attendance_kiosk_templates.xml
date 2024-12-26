@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- <template id="hrms_attendance.public_kiosk_mode" name="Attendance Kiosk">
+        <t t-call="web.layout">
+            <t t-set="html_data" t-value="{'lang': kiosk_backend_info['lang']}"/>
+            <t t-set="head">
+                <title>Attendance Kiosk</title>
+                <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+                <meta http-equiv="content-type" content="text/html, charset=utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <t t-call-assets="hrms_attendance.assets_public_attendance" t-js="false"/>
+                <t t-call-assets="hrms_attendance.assets_public_attendance" t-css="false"/>
+                <t t-call="web.conditional_assets_tests">
+                    <t t-set="ignore_missing_deps" t-value="True"/>
+                </t>
+
+                <script type="text/javascript">
+                    odoo.define("hrms_attendance.public_kiosk_app", ["@hrms_attendance/public_kiosk/public_kiosk_app"], function (require) {
+                    var { createPublicKioskAttendance } = require("@hrms_attendance/public_kiosk/public_kiosk_app");
+                    createPublicKioskAttendance(document, <t t-out="json.dumps(kiosk_backend_info)"/>);
+                    });
+                </script>
+            </t>
+            <t t-set="body">
+            </t>
+            <body class="o_web_client o_hrms_attendance_kiosk_body position-relative">
+            </body>
+        </t>
+    </template> -->
+
+    <!-- <template id="hrms_attendance.public_kiosk_mode" name="Attendance Kiosk">
+        <t t-call="web.layout">
+            <t t-set="html_data" t-value="{'lang': kiosk_backend_info['lang']}"/>
+            
+            <t t-set="head">
+                <title>Attendance Kiosk</title>
+                <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+                <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                
+                <t t-call-assets="hrms_attendance.assets_public_attendance" t-js="false"/>
+                <t t-call-assets="hrms_attendance.assets_public_attendance" t-css="true"/>
+                <t t-call="web.conditional_assets_tests">
+                    <t t-set="ignore_missing_deps" t-value="True"/>
+                </t>
+                
+                <script type="text/javascript">
+                    odoo.define("hrms_attendance.public_kiosk_app", ["@hrms_attendance/public_kiosk/public_kiosk_app"], function (require) {
+                        var { createPublicKioskAttendance } = require("@hrms_attendance/public_kiosk/public_kiosk_app");
+                        createPublicKioskAttendance(document, <t t-esc="json.dumps(kiosk_backend_info)"/>);
+                    });
+                </script>
+            </t>
+            
+            <t t-set="body">
+                <body class="o_web_client o_hrms_attendance_kiosk_body position-relative">
+                    <div class="container mt-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8 text-center">
+                                <h1 class="display-4">Welcome to the Attendance Kiosk</h1>
+                                <p class="lead">Select your department to clock in or out.</p>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center mt-4">
+                            <div class="col-md-8">
+                                <ul class="list-group">
+                                    <t t-foreach="kiosk_backend_info['departments']" t-as="department">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span t-esc="department['name']"/>
+                                            <span class="badge badge-primary badge-pill" t-esc="department['count']"/> employees
+                                        </li>
+                                    </t>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </body>
+            </t>
+        </t>
+    </template> -->
+
+    <template id="attendance_template" name="Attendance Kiosk Page">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1>Attendance Details</h1>
+                <p>Name: <t t-esc="attendance.name"/></p>
+                <p>Worked Hours: <t t-esc="attendance.worked_hours"/></p>
+                <p>Overtime Hours: <t t-esc="attendance.overtime_hours"/></p>
+            </div>
+        </t>
+    </template>
+</odoo>

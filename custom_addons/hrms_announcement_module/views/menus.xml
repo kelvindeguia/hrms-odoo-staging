@@ -1,0 +1,15 @@
+<odoo>
+    <!--  Root menu for hr.announcement.   -->
+    <menuitem id="hr_announcements_menu_root"
+              name="HRMS - Announcements"
+              groups='group_hrms_announcements_user,group_hrms_announcements_manager,group_hr_department_user,group_hr_department_manager,group_it_department_user,group_it_department_manager,group_gloc_department_user,group_gloc_department_manager,group_recruitment_department_user,group_recruitment_department_manager,group_facilities_department_user,group_facilities_department_manager,group_cs_department_user,group_cs_department_manager,group_finance_department_user,group_finance_department_manager,group_employee_user,group_employee_manager'
+              sequence="-6"/>
+
+    <!--  HR Announcements Menu  -->
+    <menuitem id="hr_announcements_menu_view"
+              name="Announcements"
+              action="action_hr_announcements"
+              parent="hr_announcements_menu_root"
+              groups="group_hrms_announcements_user,group_hrms_announcements_manager,group_hr_department_user,group_hr_department_manager,group_it_department_user,group_it_department_manager,group_gloc_department_user,group_gloc_department_manager,group_recruitment_department_user,group_recruitment_department_manager,group_facilities_department_user,group_facilities_department_manager,group_cs_department_user,group_cs_department_manager,group_finance_department_user,group_finance_department_manager,group_employee_user,group_employee_manager"
+              sequence="1"/>
+</odoo>

@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+        <!-- Employee: See Own Attendance Records -->
+        <record id="rule_employee_see_own_records_attendance" model="ir.rule">
+            <field name="name">Employee: See Own Records</field>
+            <field name="model_id" ref="hrms_attendance.model_hrms_attendance"/>
+            <field name="groups" eval="[(4, ref('hrms_attendance.group_hrms_attendance_user'))]"/>
+            <!-- Make sure the `user_id` field is linked properly -->
+            <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="hrms_attendance.CheckInOut">
+        <div class="flex-grow-1">
+            <button t-on-click="signInOut"
+                    t-attf-class="o_hr_attendance_sign_in_out_icon btn btn-{{ props.checkedIn ? 'warning' : 'success' }} align-self-center px-5 py-3 mt-4 mb-2">
+                <t t-if="!props.checkedIn">
+                    Check IN for <t t-esc="props.employeeName || 'User'"/>
+                </t>
+                <t t-else="">
+                    Check OUT for <t t-esc="props.employeeName || 'User'"/>
+                </t>
+            </button>
+        </div>
+    </t>
+</templates>

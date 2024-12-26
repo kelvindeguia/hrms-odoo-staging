@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        <record id="rule_hr_announcements_manager" model="ir.rule">
+            <field name="name">Manager Access</field>
+            <field name="model_id" ref="model_hr_announcements"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('hrms_announcement_module.group_hrms_announcements_manager'))]"/>
+        </record>
+        <!-- Restrict Announcement Visibility based on user access -->
+        <record id="announcement_employee_rule" model="ir.rule">
+            <field name="name">Employee Announcement Rule</field>
+            <field name="model_id" ref="model_hr_announcements"/>
+            <field name="domain_force">['|',('is_announcement', '=', True),'|',('is_manager', '=', True),('employee_ids.user_id', 'in', [user.id])]</field>
+            <field name="groups" eval="[(4, ref('hrms_announcement_module.group_hr_department_user'))]"/>
+        </record>
+
+        <record id="announcement_department_rule" model="ir.rule">
+            <field name="name">Department Announcement Rule</field>
+            <field name="model_id" ref="model_hr_announcements"/>
+            <field name="domain_force">['|',('is_announcement', '=', True),'|',('is_manager', '=', True),('department_ids', 'in', [user.employee_id.department_id.id])]
+            </field>
+            <field name="groups" eval="[(4, ref('hrms_announcement_module.group_hr_department_user'))]"/>
+        </record>
+    </data>
+</odoo>

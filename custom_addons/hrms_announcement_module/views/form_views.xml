@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_announcements_form" model="ir.ui.view">
+         <field name="name">hr.announcements.form</field>
+        <field name="model">hr.announcements</field>
+        <field name="arch" type="xml">
+            <form string="Announcements">
+            <!-- <field name="user_id"/> -->
+                <header>
+                    <button string="Send For Approval" class="btn-primary"
+                            type="object" name="action_sent_announcement"
+                            groups="hrms_announcement_module.group_hrms_announcements_manager"
+                            invisible="state != 'draft'"/>
+                    <button string="Approve" class="btn-primary"
+                            groups="hrms_announcement_module.group_hrms_announcements_manager" type="object"
+                            name="action_approve_announcement"
+                            invisible="state != 'to_approve'"/>
+                    <button string="Refuse" groups="hrms_announcement_module.group_hrms_announcements_manager"
+                            type="object"
+                            name="action_reject_announcement" invisible="state != 'to_approve'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,to_approve,approved"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" class="oe_inline" readonly="1"/>
+                        </h1>
+                        <div name="options_active">
+                            <div>
+                                <label for="is_announcement" class="oe_inline"
+                                       string="General Announcement "/>
+                                <field name="is_announcement"
+                                       class="oe_inline oe_input_align"
+                                       readonly="name != False"/>
+                            </div>
+                        </div>
+                    </div>
+                    <group>
+                        <label for="announcement_reason"/>
+                        <div>
+                            <field name="announcement_reason" readonly="state != 'draft'"/>
+                        </div>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="announcement_type"
+                                   invisible="is_announcement != False"/>
+                            <field name="attachment_id"
+                                   widget="many2many_binary" class="oe_inline"/>
+                        </group>
+                        <group>
+                            <field name="date_end"/>
+                            <field name="employee_ids" widget="many2many_tags"
+                                   invisible="is_announcement != False or announcement_type != 'employee'"/>
+                            <field name="department_ids" widget="many2many_tags"
+                                   invisible="is_announcement != False or announcement_type != 'department'"/>
+                            <field name="position_ids" widget="many2many_tags"
+                                   invisible="is_announcement != False or announcement_type != 'job_position'"/>
+                            <field name="requested_date" readonly="1"/>
+                            <field name="company_id"
+                                   options="{'no_create': True}"
+                                   groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="announcement" string="Letter">
+                            <field name="announcement" readonly="state != 'draft'"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+</odoo>
